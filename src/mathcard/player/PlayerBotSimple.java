@@ -1,6 +1,7 @@
 package mathcard.player;
 
 import java.util.List;
+import java.util.Random;
 import java.util.ArrayList;
 
 import mathcard.IDebugPrinter;
@@ -13,6 +14,13 @@ public class PlayerBotSimple extends PlayerOpponentAware implements IDebugPrinte
 
 	public PlayerBotSimple(String name) {
 		super("BOT " + name);
+	}
+
+	@Override
+	public void pickCard(List<Card> list)
+	{
+		//TODO actual picking
+		pick(list, 0);
 	}
 
 	@Override

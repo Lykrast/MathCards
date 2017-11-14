@@ -48,7 +48,7 @@ public class GameFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
-				print.println(console.getText());
+				print.println("> " + console.getText());
 				try {
 					String input = console.getText() + "\n";
 					writeIn.write(input.getBytes());
@@ -90,6 +90,12 @@ public class GameFrame extends JFrame {
 	public InputStream getInputStream()
 	{
 		return write;
+	}
+	
+	public void flush()
+	{
+		display.setText("");
+		print.flush();
 	}
 
 }

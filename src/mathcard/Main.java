@@ -10,22 +10,35 @@ public class Main {
 
 	public static void main(String[] args) {
 		Random rand = new Random();
-		
 		GameFrame frame = new GameFrame();
 		
-		Game game = new Game(new PlayerConsole("Blanc", frame.getInputStream(), frame.getPrintStream()), new PlayerConsole("Noir", frame.getInputStream(), frame.getPrintStream()));
-		//Game game = new Game(new PlayerConsole("Blanc", frame.getInputStream(), frame.getPrintStream()), new PlayerBotSimple("Albert"));
-		//Game game = new Game(new PlayerBotSimple("Richard"), new PlayerBotSimple("Mortimer"));
+		Player blanc = new PlayerConsole("Blanc", frame.getInputStream(), frame.getPrintStream());
+		//Player blanc = new PlayerBotSimple("Richard");
 		
-		game.reset();
+		Player noir = new PlayerConsole("Noir", frame.getInputStream(), frame.getPrintStream());
+		//Player noir = new PlayerBotSimple("Mortimer");
+		
+		CardPicking picking = new CardPicking(noir, blanc);
+		
+		picking.add(new CardAdd(5));
+		picking.add(new CardAdd(-5));
+		picking.add(new CardMult(2));
+		picking.add(new CardMult(-2));
+		picking.add(new CardInvert());
+		picking.add(new CardExponent(2));
+		picking.add(new CardSoftsign());
+		picking.add(new CardSoftplus());
+		picking.add(new CardSinh());
+		picking.add(new CardTanh());
+		
+		picking.pickAll();
+		
+		Game game = new Game(blanc, noir);
+		
 		game.setScoreBoth(rand.nextInt(21) - 10);
-		game.addCardBoth(new CardAdd(5));
-		game.addCardBoth(new CardAdd(-5));
-		game.addCardBoth(new CardMult(2));
-		game.addCardBoth(new CardInvert());
-		game.addCardBoth(new CardGaussianScaled(5,0.1));
 		
-		//frame.getPrintStream().println(game);
+		frame.flush();
+		frame.getPrintStream().println("Game start!");
 		frame.getPrintStream().println(game.play());
 		frame.getPrintStream().println(game);
 	}

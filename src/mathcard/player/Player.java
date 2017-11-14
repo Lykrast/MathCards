@@ -49,6 +49,11 @@ public abstract class Player {
 		hand.add(c);
 	}
 	
+	public void handAddAll(List<Card> list)
+	{
+		hand.addAll(list);
+	}
+	
 	public boolean handEmpty()
 	{
 		return hand.isEmpty();
@@ -60,6 +65,13 @@ public abstract class Player {
 	{
 		hand.remove(c);
 		return new Play(c, this, t);
+	}
+	
+	public abstract void pickCard(List<Card> list);
+	
+	protected void pick(List<Card> list, int index)
+	{
+		hand.add(list.remove(index));
 	}
 	
 	@Override

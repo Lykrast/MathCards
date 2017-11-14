@@ -1,5 +1,6 @@
 package mathcard.player;
 
+import java.util.List;
 import java.util.Random;
 
 import mathcard.Play;
@@ -20,5 +21,11 @@ public class PlayerRandom extends Player {
 	{
 		Card c = getHand().get(rand.nextInt(getHand().size()));
 		return play(c, Target.random(rand));
+	}
+
+	@Override
+	public void pickCard(List<Card> list)
+	{
+		pick(list, rand.nextInt(list.size()));
 	}
 }

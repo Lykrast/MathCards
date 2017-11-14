@@ -2,6 +2,7 @@ package mathcard.player;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.List;
 import java.util.Scanner;
 
 import mathcard.Play;
@@ -26,7 +27,7 @@ public class PlayerConsole extends PlayerOpponentAware {
 		while (c == null)
 		{
 			out.println(displayScores());
-			c = askCard();
+			c = askCardFromList(getHand());
 			t = askTarget(c);
 			
 			if (t == null) c = null;
@@ -40,12 +41,12 @@ public class PlayerConsole extends PlayerOpponentAware {
 		return getName() + " - Scores : " + getScore() + " (you) to " + opponent.getScore();
 	}
 	
-	private Card askCard()
+	private Card askCardFromList(List<Card> list)
 	{
-		out.println(displayHand());
+		out.println(displayCardList(list));
 		
 		int index = -1;
-		int max = getHand().size() - 1;
+		int max = list.size() - 1;
 		while (index < 0 || index > max)
 		{
 			try {
@@ -55,17 +56,17 @@ public class PlayerConsole extends PlayerOpponentAware {
 			}
 		}
 		
-		return getHand().get(index);
+		return list.get(index);
 	}
 	
-	private String displayHand()
+	private String displayCardList(List<Card> list)
 	{
-		if (handEmpty()) return "";
+		if (list.isEmpty()) return "";
 		
 		String display = "";
-		for (Card c : getHand())
+		for (Card c : list)
 		{
-			String tmp = getHand().indexOf(c) + " : " + c;
+			String tmp = list.indexOf(c) + " : " + c;
 			if (display.isEmpty()) display = tmp;
 			else display += "\n" + tmp;
 		}
@@ -92,6 +93,14 @@ public class PlayerConsole extends PlayerOpponentAware {
 		if (choice == 0) return Target.SELF;
 		else if (choice == 1) return Target.OPPONENT;
 		else return null;
+	}
+
+	@Override
+	public void pickCard(List<Card> list)
+	{
+		out.println(getName() + " - Pick a card from the list");
+		Card c = askCardFromList(list);
+		pick(list, list.indexOf(c));
 	}
 
 }

@@ -1,5 +1,7 @@
 package mathcard;
 
+import java.util.List;
+
 import mathcard.Play.Target;
 import mathcard.card.Card;
 import mathcard.player.Player;
@@ -30,6 +32,13 @@ public class Game implements IDebugPrinter {
 		if (printing) System.out.println("Giving card " + c + " to both players");
 		p1.handAdd(c);
 		p2.handAdd(c);
+	}
+	
+	public void addCardListBoth(List<Card> list)
+	{
+		if (printing) System.out.println("Giving card list " + list + " to both players");
+		p1.handAddAll(list);
+		p2.handAddAll(list);
 	}
 	
 	public void setScoreBoth(double d)
