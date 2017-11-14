@@ -22,8 +22,8 @@ public class Main {
 		game.addCardBoth(new CardAdd(5));
 		game.addCardBoth(new CardAdd(-5));
 		game.addCardBoth(new CardMult(2));
-		game.addCardBoth(new CardMult(-2));
-		game.addCardBoth(new CardSoftsign());
+		game.addCardBoth(new CardInvert());
+		game.addCardBoth(new CardGaussianScaled(5,0.1));
 		
 		//frame.getPrintStream().println(game);
 		frame.getPrintStream().println(game.play());
