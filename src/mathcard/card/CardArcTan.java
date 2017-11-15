@@ -1,16 +1,16 @@
 package mathcard.card;
 
-public class CardSoftplus extends Card {
+public class CardArcTan extends Card {
 	@Override
 	protected double calculate(double d)
 	{
-		return Math.log1p(Math.exp(d));
+		return Math.atan(d);
 	}
 
 	@Override
 	public String toString()
 	{
-		return "ln(e^x + 1)";
+		return "arctan(x)";
 	}
 
 }
