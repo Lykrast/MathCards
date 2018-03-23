@@ -1,4 +1,4 @@
-package mathcard;
+package mathcard.game;
 
 public interface IDebugPrinter {
 	

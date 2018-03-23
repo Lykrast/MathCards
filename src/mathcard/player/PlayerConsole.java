@@ -5,9 +5,9 @@ import java.io.PrintStream;
 import java.util.List;
 import java.util.Scanner;
 
-import mathcard.Play;
-import mathcard.Play.Target;
 import mathcard.card.Card;
+import mathcard.game.Play;
+import mathcard.game.Play.Target;
 
 public class PlayerConsole extends PlayerOpponentAware {
 	private Scanner in;

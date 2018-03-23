@@ -1,4 +1,4 @@
-package mathcard;
+package mathcard.game;
 
 import java.util.ArrayList;
 import java.util.List;

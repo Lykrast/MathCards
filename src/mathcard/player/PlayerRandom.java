@@ -3,9 +3,9 @@ package mathcard.player;
 import java.util.List;
 import java.util.Random;
 
-import mathcard.Play;
-import mathcard.Play.Target;
 import mathcard.card.Card;
+import mathcard.game.Play;
+import mathcard.game.Play.Target;
 
 public class PlayerRandom extends Player {
 	private Random rand;

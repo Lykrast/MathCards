@@ -4,7 +4,7 @@ public class CardSoftplus extends Card {
 	@Override
 	protected double calculate(double d)
 	{
-		return Math.log1p(Math.exp(d));
+		return Math.log(Math.exp(d) + 1);
 	}
 
 	@Override

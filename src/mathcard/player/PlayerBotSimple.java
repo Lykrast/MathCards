@@ -4,10 +4,10 @@ import java.util.List;
 import java.util.Random;
 import java.util.ArrayList;
 
-import mathcard.IDebugPrinter;
-import mathcard.Play;
-import mathcard.Play.Target;
 import mathcard.card.Card;
+import mathcard.game.IDebugPrinter;
+import mathcard.game.Play;
+import mathcard.game.Play.Target;
 
 public class PlayerBotSimple extends PlayerOpponentAware implements IDebugPrinter {
 	private boolean printing = false;

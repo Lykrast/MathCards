@@ -1,13 +1,14 @@
-package mathcard;
+package mathcard.game;
 
 import java.util.List;
+import java.util.Observable;
 
-import mathcard.Play.Target;
 import mathcard.card.Card;
+import mathcard.game.Play.Target;
 import mathcard.player.Player;
 import mathcard.player.PlayerOpponentAware;
 
-public class Game implements IDebugPrinter {
+public class Game extends Observable implements IDebugPrinter {
 	private Player p1, p2;
 	private boolean printing = false;
 	
@@ -20,11 +21,21 @@ public class Game implements IDebugPrinter {
 		if (p2 instanceof PlayerOpponentAware) ((PlayerOpponentAware) p2).setOpponent(p1);
 	}
 	
+	public Player getPlayer(int index)
+	{
+		if (index == 1) return p1;
+		if (index == 2) return p2;
+		return null;
+	}
+	
 	public void reset()
 	{
 		if (printing) System.out.println("Clearing hand for both players");
 		p1.handClear();
 		p2.handClear();
+		
+		setChanged();
+		notifyObservers(null);
 	}
 	
 	public void addCardBoth(Card c)
@@ -32,6 +43,9 @@ public class Game implements IDebugPrinter {
 		if (printing) System.out.println("Giving card " + c + " to both players");
 		p1.handAdd(c);
 		p2.handAdd(c);
+		
+		setChanged();
+		notifyObservers(null);
 	}
 	
 	public void addCardListBoth(List<Card> list)
@@ -39,6 +53,9 @@ public class Game implements IDebugPrinter {
 		if (printing) System.out.println("Giving card list " + list + " to both players");
 		p1.handAddAll(list);
 		p2.handAddAll(list);
+		
+		setChanged();
+		notifyObservers(null);
 	}
 	
 	public void setScoreBoth(double d)
@@ -46,6 +63,9 @@ public class Game implements IDebugPrinter {
 		if (printing) System.out.println("Setting score to " + d + " for both players");
 		p1.setScore(d);
 		p2.setScore(d);
+		
+		setChanged();
+		notifyObservers(null);
 	}
 	
 	public Victory play()
@@ -60,6 +80,8 @@ public class Game implements IDebugPrinter {
 				System.out.println(formatPlayer(p1) + " plays card " + play.getCard() + " on " + formatPlayer(target));
 				System.out.println("Scores : " + p1.getScore() + " - " + p2.getScore());
 			}
+			setChanged();
+			notifyObservers(null);
 			
 			play = p2.play();
 			target = evaluatePlay(play);
@@ -69,6 +91,8 @@ public class Game implements IDebugPrinter {
 				System.out.println(formatPlayer(p2) + " plays card " + play.getCard() + " on " + formatPlayer(target));
 				System.out.println("Scores : " + p1.getScore() + " - " + p2.getScore());
 			}
+			setChanged();
+			notifyObservers(null);
 		}
 		
 		if (p1.getScore() > p2.getScore()) return Victory.P1_VICTORY;

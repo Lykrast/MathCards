@@ -3,9 +3,9 @@ package mathcard.player;
 import java.util.ArrayList;
 import java.util.List;
 
-import mathcard.Play;
-import mathcard.Play.Target;
 import mathcard.card.Card;
+import mathcard.game.Play;
+import mathcard.game.Play.Target;
 
 public abstract class Player {
 	private double score;
@@ -34,7 +34,7 @@ public abstract class Player {
 		score = d;
 	}
 	
-	protected List<Card> getHand()
+	public List<Card> getHand()
 	{
 		return hand;
 	}

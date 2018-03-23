@@ -1,16 +1,25 @@
-package mathcard;
+package mathcard.game;
 
 import java.util.Random;
 
-import mathcard.card.*;
-import mathcard.player.*;
-import mathcard.ui.GameFrame;
+import mathcard.card.CardAdd;
+import mathcard.card.CardExponent;
+import mathcard.card.CardInvert;
+import mathcard.card.CardMult;
+import mathcard.card.CardSinh;
+import mathcard.card.CardSoftplus;
+import mathcard.card.CardSoftsign;
+import mathcard.card.CardTanh;
+import mathcard.player.Player;
+import mathcard.player.PlayerConsole;
+import mathcard.ui.ConsoleFrame;
+import mathcard.ui.VisualFrame;
 
 public class Main {
 
 	public static void main(String[] args) {
 		Random rand = new Random();
-		GameFrame frame = new GameFrame();
+		ConsoleFrame frame = new ConsoleFrame();
 		
 		Player blanc = new PlayerConsole("Blanc", frame.getInputStream(), frame.getPrintStream());
 		//Player blanc = new PlayerBotSimple("Richard");
@@ -34,6 +43,7 @@ public class Main {
 		picking.pickAll();
 		
 		Game game = new Game(blanc, noir);
+		VisualFrame visual = new VisualFrame(game);
 		
 		game.setScoreBoth(rand.nextInt(21) - 10);
 		
