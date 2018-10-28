@@ -61,7 +61,7 @@ public class ConsoleFrame extends JFrame {
 		
 		console = new JTextField();
 		enter = new JButton("Enter");
-		enter.setBackground(Color.WHITE);
+		//enter.setBackground(Color.WHITE);
 		enter.addActionListener(writer);
 		console.addActionListener(writer);
 		
@@ -70,7 +70,7 @@ public class ConsoleFrame extends JFrame {
 		
 		display = new JTextArea();
 		display.setEditable(false);
-		display.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
+		//display.setBorder(BorderFactory.createLineBorder(Color.LIGHT_GRAY));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setViewportView(display);

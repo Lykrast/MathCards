@@ -2,6 +2,8 @@ package mathcard.game;
 
 import java.util.Random;
 
+import javax.swing.UIManager;
+
 import mathcard.card.CardAdd;
 import mathcard.card.CardExponent;
 import mathcard.card.CardInvert;
@@ -13,11 +15,16 @@ import mathcard.card.CardTanh;
 import mathcard.player.Player;
 import mathcard.player.PlayerConsole;
 import mathcard.ui.ConsoleFrame;
-import mathcard.ui.VisualFrame;
 
 public class Main {
 
 	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception e) {
+			System.err.println("Error loading look and feel: " + e);
+		}
+		
 		Random rand = new Random();
 		ConsoleFrame frame = new ConsoleFrame();
 		
@@ -43,7 +50,7 @@ public class Main {
 		picking.pickAll();
 		
 		Game game = new Game(blanc, noir);
-		VisualFrame visual = new VisualFrame(game);
+		//VisualFrame visual = new VisualFrame(game);
 		
 		game.setScoreBoth(rand.nextInt(21) - 10);
 		
